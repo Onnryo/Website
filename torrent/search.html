@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+  <!-- Bootstrap core CSS -->
+  <link href="../css/bootstrap.css" rel="stylesheet">
+  <!-- Material Design Bootstrap -->
+  <link href="../css/mdb.css" rel="stylesheet">
+  <!-- Your custom styles (optional) -->
+  <link href="../css/style.css" rel="stylesheet">
+
+  <title>Search</title>
+</head>
+<body class="blue-grey darken-4">
+  <header>
+    <nav class="mb-1 navbar navbar-expand-lg navbar-dark unique-color">
+      <a class="navbar-brand" href="https://onryo.entrydns.org/home.html">
+        <img src="../img/icon/icon-transparent.png" height="30" alt="">
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-3" aria-controls="navbarSupportedContent-3" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent-3">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link waves-effect waves-light" href="https://onryo.entrydns.org/home.html">Home</a>
+          </li>
+          <li class="nav-item active dropdown">
+            <a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink-3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Torrent</a>
+            <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-3">
+              <a class="dropdown-item waves-effect waves-light" href="https://onryo.entrydns.org/torrent/search.html">Search</a>
+              <a class="dropdown-item waves-effect waves-light" href="https://onryo.entrydns.org/torrent/progress.html">Progress</a>
+            </div>
+          </li>
+        </ul>
+        <ul class="navbar-nav ml-auto nav-flex-icons">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fa fa-user"></i>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right dropdown-default" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item waves-effect waves-light" href="#">Settings</a>
+              <a class="dropdown-item waves-effect waves-light" href="https://onryo.entrydns.org/logout.html">Log Out</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+  <main>
+    <div class="col-md-6 mx-auto">
+
+      <form class="md-form input-group" action="javascript:search()">
+        <input type="search" class="form-control rounded white added-padding-2" id="searchTorrent" placeholder="Search...">
+        <span class="input-group-btn">
+          <button class="btn btn-outline-primary btn-sm rounded waves-effect my-1" id="buttonSearch" type="submit"><i class="fas fa-search"></i></button>
+        </span>
+      </form>
+
+    </div>
+
+    <div class="table-wrapper rounded col-8 blue-grey darken-3 mx-auto" id="tableSearch" style="display: none;">
+      <!--Table-->
+      <table class="table table-hover mb-0 text-white">
+
+        <!--Table head-->
+        <thead>
+          <tr>
+            <th scope="col" class="th-lg col-4">Torrent</th>
+            <th scope="col" class="th-lg">Seeders</th>
+            <th scope="col" class="th-lg">Leechers</th>
+            <th scope="col" class="th-lg">Size</th>
+            <th scope="col" class="th-lg">Download</th>
+          </tr>
+        </thead>
+        <!--Table head-->
+
+        <!--Table body-->
+        <tbody id="tableBodySearch">
+        </tbody>
+        <!--Table body-->
+      </table>
+      <!--Table-->
+    </div>
+
+    <div class="modal fade" id="modalDownload" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <!--Content-->
+        <div class="modal-content">
+          <!--Header-->
+          <div class="modal-header">
+            <h4 class="modal-title w-100" id="myModalLabel">Download Info</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <!--Body-->
+          <div class="modal-body">
+            <input type="text" id="modalTitleInput" class="form-control" placeholder="Title">
+            <div class="custom-control custom-radio custom-control-inline">
+              <input type="radio" class="custom-control-input" id="radioTorrentType1" name="radioTorrentType" onclick="updateModal()" checked>
+              <label class="custom-control-label" for="radioTorrentType1">Movie</label>
+            </div>
+            <div class="custom-control custom-radio custom-control-inline">
+              <input type="radio" class="custom-control-input" id="radioTorrentType2" name="radioTorrentType" onclick="updateModal()" disabled>
+              <label class="custom-control-label" for="radioTorrentType2">Television</label>
+            </div>
+            <div class="custom-control custom-radio custom-control-inline">
+              <input type="radio" class="custom-control-input" id="radioTorrentType3" name="radioTorrentType" onclick="updateModal()">
+              <label class="custom-control-label" for="radioTorrentType3">FTP</label>
+            </div>
+          </div>
+          <!--Footer-->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary waves-effect waves-light" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary waves-effect waves-light" onclick="download()">Download</button>
+          </div>
+        </div>
+        <!--/.Content-->
+      </div>
+    </div>
+  </main>
+  <!-- SCRIPTS -->
+  <script>
+  var bearer = getCookie("bearer");
+  if (bearer == '') {
+    window.location = "https://onryo.entrydns.org";
+  } else {
+    var xhr = new XMLHttpRequest();
+    var json = null;
+    bearer = "bearer " + bearer;
+    xhr.open("GET", "https://onryo.entrydns.org:1025/claims", true);
+    xhr.setRequestHeader("Authorization", bearer);
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === 4 && xhr.status === 200) {
+        json = JSON.parse(xhr.responseText);
+        window.localStorage.setItem("username", json.sub);
+        document.getElementById("navbarDropdownMenuLink").innerHTML = "<i class=\"fa fa-user mr-1\"></i>" + window.localStorage.getItem("username");
+      } else if (xhr.readyState === 4 && xhr.status != 200) {
+        window.location = "https://onryo.entrydns.org"
+      }
+    };
+    xhr.send();
+  }
+
+  function search(){
+    document.getElementById("buttonSearch").disabled = true;
+    var bearer = getCookie("bearer");
+    if (bearer == '') {
+      window.location = "https://onryo.entrydns.org";
+    } else {
+      bearer = "bearer " + bearer;
+      var xhr = new XMLHttpRequest();
+      var url = "https://onryo.entrydns.org:1025/torrent/search";
+      xhr.open("POST", url, true);
+      xhr.setRequestHeader("Authorization", bearer);
+      xhr.setRequestHeader("Content-Type", "application/json");
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          var json = JSON.parse(xhr.responseText);
+          populate(json);
+          console.log(json);
+          document.getElementById("tableSearch").style.display = "block";
+          document.getElementById("buttonSearch").disabled = false;
+        } else if (xhr.readyState === 4 && xhr.status != 200) {
+          alert("Could not connect.");
+        }
+      };
+      var data = JSON.stringify({"query": document.getElementById("searchTorrent").value});
+      xhr.send(data);
+    }
+  }
+
+  function populate(results) {
+    var oldBody = document.getElementById("tableBodySearch");
+    var newBody = document.createElement("tbody");
+    var tableRow;
+    var title;
+    var seed;
+    var leech;
+    var size;
+    var download;
+    var link;
+    var icon;
+    var uri;
+    newBody.setAttribute("id", "tableBodySearch");
+    for (var i in results) {
+      tableRow = document.createElement("tr");
+      title = document.createElement("td");
+      title.innerHTML = results[i].Title;
+      tableRow.appendChild(title);
+      seed = document.createElement("td");
+      seed.innerHTML = results[i].Seeders;
+      tableRow.appendChild(seed);
+      leech = document.createElement("td");
+      leech.innerHTML = results[i].Leechers;
+      tableRow.appendChild(leech);
+      size = document.createElement("td");
+      size.innerHTML = (results[i].Size / 1073741824).toFixed(2).toString();
+      tableRow.appendChild(size);
+      download = document.createElement("td");
+      link = document.createElement("a");
+      link.setAttribute("href", "javascript:openModal(" + i + ")");
+      icon = document.createElement("i");
+      icon.setAttribute("class", "fa fa-arrow-alt-circle-down");
+      icon.setAttribute("style", "color:white");
+      link.appendChild(icon);
+      download.appendChild(link);
+      tableRow.appendChild(download);
+      uri = document.createElement("td");
+      uri.innerHTML = results[i].MagnetLink;
+      uri.style.display = "none"
+      tableRow.appendChild(uri);
+      newBody.appendChild(tableRow);
+    }
+    oldBody.parentNode.replaceChild(newBody, oldBody);
+  }
+
+  function download() {
+    var id = window.localStorage.getItem("id");
+    var trs = document.getElementById("tableBodySearch").getElementsByTagName("tr");
+    var title = document.getElementById("searchTorrent").value;
+    var uri = trs[id].getElementsByTagName("td")[5].innerHTML;
+    var user = window.localStorage.getItem("username");
+    var bearer = getCookie("bearer");
+    if (bearer == '') {
+      window.location = "https://onryo.entrydns.org";
+    } else {
+      bearer = "bearer " + bearer;
+      var xhr = new XMLHttpRequest();
+      var url = "https://onryo.entrydns.org:1025/torrent/add";
+      xhr.open("POST", url, true);
+      xhr.setRequestHeader("Authorization", bearer);
+      xhr.setRequestHeader("Content-Type", "application/json");
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          var json = JSON.parse(xhr.responseText);
+          console.log(json);
+          $("#modalDownload").modal("hide");
+        } else if (xhr.readyState === 4 && xhr.status != 200) {
+          alert("Could not connect.");
+        }
+      };
+      var data;
+      if (document.getElementById("radioTorrentType1").checked) {
+        data = JSON.stringify({"torrenttype": "movie", "title": title, "uri": uri});
+      } else if (document.getElementById("radioTorrentType2").checked) {
+        return
+      } else {
+        data = JSON.stringify({"torrenttype": "misc", "user": user, "uri": uri});
+      }
+      xhr.send(data);
+    }
+  }
+
+  function openModal(id) {
+    window.localStorage.setItem("id", id);
+    document.getElementById("radioTorrentType1").checked = true;
+    document.getElementById("modalTitleInput").value = document.getElementById("searchTorrent").value;
+    $("#modalDownload").modal("show");
+  }
+
+  function updateModal() {
+    if (document.getElementById("radioTorrentType1").checked) {
+      document.getElementById("modalTitleInput").style.display = "block";
+    } else if (document.getElementById("radioTorrentType2").checked) {
+      document.getElementById("modalTitleInput").style.display = "block";
+    } else {
+      document.getElementById("modalTitleInput").style.display = "none";
+    }
+  }
+
+  function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+      var c = ca[i];
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return "";
+  }
+</script>
+<!-- JQuery -->
+<script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="../js/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="../js/mdb.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+    <!-- Bootstrap core CSS -->
+    <link href="./css/bootstrap.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="./css/mdb.css" rel="stylesheet">
+    <!-- Your custom styles (optional) -->
+    <link href="./css/style.css" rel="stylesheet">
+
+    <title>Sign up</title>
+
+    <script>
+      function submit(){
+        var xhr = new XMLHttpRequest();
+        var url = "https://onryo.entrydns.org:1025/register";
+        xhr.open("POST", url, true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState === 4 && xhr.status === 200) {
+            window.location = "https://onryo.entrydns.org/";
+          } else {
+            location.reload();
+          }
+        };
+        var data = JSON.stringify({"username": document.getElementById("inputUsername").value,
+          "password": document.getElementById("inputPassword").value,
+          "email": document.getElementById("inputEmail").value,
+          "firstname": document.getElementById("inputFirstname").value,
+          "lastname": document.getElementById("inputLastname").value,
+          "phone": document.getElementById("inputPhone").value,
+          "address": document.getElementById("inputAddress").value,
+          "address2": document.getElementById("inputAddress2").value,
+          "city": document.getElementById("inputCity").value,
+          "state": document.getElementById("inputState").value,
+          "zip": document.getElementById("inputZip").value
+        });
+        xhr.send(data);
+      }
+    </script>
+
+  </head>
+  <body class="blue-grey darken-4">
+    <script>
+      function check_pass() {
+          if (document.getElementById('inputPassword').value ==
+                  document.getElementById('inputPassword2').value) {
+              document.getElementById('submit').disabled = false;
+          } else {
+              document.getElementById('submit').disabled = true;
+          }
+      }
+    </script>
+    <div class="card text-white blue-grey darken-3 mb-3 mt-5 mx-auto" style="max-width: 30rem;">
+      <div class="card-header mx-auto"><h1>Sign up</h1></div>
+      <div class="card-body">
+        <form action="javascript:submit()">
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="inputUsername">Username</label>
+              <input type="text" class="form-control" id="inputUsername" name="user" required>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="inputEmail">Email</label>
+              <input type="email" class="form-control" id="inputEmail" name="email" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="inputPassword">Password</label>
+              <input type="password" class="form-control" id="inputPassword" name="pass" onchange='check_pass();' required>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="inputPassword2">Re-enter Password</label>
+              <input type="password" class="form-control" id="inputPassword2" onchange='check_pass();' required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="inputFirstname">First Name</label>
+              <input type="text" class="form-control" id="inputFirstname" name="first_name" required>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="inputLastname">Last Name</label>
+              <input type="text" class="form-control" id="inputLastname" name="last_name" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputPhone">Phone Number</label>
+            <input type="tel" class="form-control" id="inputPhone" name="phone" placeholder="1-(555)-555-5555" required>
+          </div>
+          <div class="form-group">
+            <label for="inputAddress">Address</label>
+            <input type="text" class="form-control" id="inputAddress" name="address" placeholder="1234 Main St" required>
+          </div>
+          <div class="form-group">
+            <label for="inputAddress2">Address 2</label>
+            <input type="text" class="form-control" id="inputAddress2" name="address2" placeholder="Apartment, studio, or floor">
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-5">
+              <label for="inputCity">City</label>
+              <input type="text" class="form-control" id="inputCity" name="city" required>
+            </div>
+            <div class="form-group col-md-4">
+              <label for="inputState">State</label>
+              <select id="inputState" class="form-control" name="state" required>
+                <option selected>Choose...</option>
+                <option>Alabama</option>
+                <option>Alaska</option>
+                <option>Arizona</option>
+                <option>Arkansas</option>
+                <option>California</option>
+                <option>Colorado</option>
+                <option>Connecticut</option>
+                <option>Delaware</option>
+                <option>Florida</option>
+                <option>Georgia</option>
+                <option>Hawaii</option>
+                <option>Idaho</option>
+                <option>Illinois</option>
+                <option>Indiana</option>
+                <option>Iowa</option>
+                <option>Kansas</option>
+                <option>Kentucky</option>
+                <option>Louisiana</option>
+                <option>Maine</option>
+                <option>Maryland</option>
+                <option>Massachusetts</option>
+                <option>Michigan</option>
+                <option>Minnesota</option>
+                <option>Mississippi</option>
+                <option>Missouri</option>
+                <option>Montana</option>
+                <option>Nebraska</option>
+                <option>Nevada</option>
+                <option>New Hampshire</option>
+                <option>New Jersey</option>
+                <option>New Mexico</option>
+                <option>New York</option>
+                <option>North Carolina</option>
+                <option>North Dakota</option>
+                <option>Ohio</option>
+                <option>Oklahoma</option>
+                <option>Oregon</option>
+                <option>Pennsylvania</option>
+                <option>Rhode Island</option>
+                <option>South Carolina</option>
+                <option>South Dakota</option>
+                <option>Tennessee</option>
+                <option>Texas</option>
+                <option>Utah</option>
+                <option>Vermont</option>
+                <option>Virginia</option>
+                <option>Washington</option>
+                <option>West Virginia</option>
+                <option>Wisconsin</option>
+                <option>Wyoming</option>
+              </select>
+            </div>
+            <div class="form-group col-md-3">
+              <label for="inputZip">Zip</label>
+              <input type="text" class="form-control" id="inputZip" name="zip" required>
+            </div>
+          </div>
+          <button type="submit" id="submit" class="btn btn-primary float-right">Sign up</button>
+        </form>
+      </div>
+    </div>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+  </body>
+</html>
