@@ -137,7 +137,7 @@
       tableRow.appendChild(progress);
       remove = document.createElement("td");
       link = document.createElement("a");
-      link.setAttribute("href", "javascript:remove(" + i + ")");
+      link.setAttribute("href", "javascript:rm(" + i + ")");
       icon = document.createElement("i");
       icon.setAttribute("class", "fa fa-minus-circle");
       icon.setAttribute("style", "color:white");
@@ -153,7 +153,7 @@
     oldBody.parentNode.replaceChild(newBody, oldBody);
   }
 
-  function remove(id) {
+  function rm(id) {
     var i = document.getElementById("tableBodySearch").getElementsByTagName("tr")[id].getElementsByTagName("td")[4].innerHTML;
     var bearer = getCookie("bearer");
     if (bearer == '') {
