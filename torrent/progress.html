@@ -137,19 +137,24 @@
       tableRow.appendChild(progress);
       remove = document.createElement("td");
       link = document.createElement("a");
-      link.setAttribute("href", "javascript:remove(" + results[i].Id + ")");
+      link.setAttribute("href", "javascript:remove(" + i + ")");
       icon = document.createElement("i");
       icon.setAttribute("class", "fa fa-minus-circle");
       icon.setAttribute("style", "color:white");
       link.appendChild(icon);
       remove.appendChild(link);
       tableRow.appendChild(remove);
+      id = document.createElement("td");
+      id.innerHTML = results[i].Id;
+      id.style.display = "none";
+      tableRow.appendChild(id);
       newBody.appendChild(tableRow);
     }
     oldBody.parentNode.replaceChild(newBody, oldBody);
   }
 
   function remove(id) {
+    var i = document.getElementById("tableBodySearch").getElementsByTagName("tr")[id].getElementsByTagName("td")[4].innerHTML;
     var bearer = getCookie("bearer");
     if (bearer == '') {
       window.location = "https://onryo.entrydns.org";
@@ -167,7 +172,7 @@
           alert("Could not connect.");
         }
       };
-      var data = JSON.stringify({"id": id});
+      var data = JSON.stringify({"id": i});
       xhr.send(data);
     }
   }
