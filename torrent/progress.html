@@ -154,7 +154,7 @@
   }
 
   function rm(id) {
-    var i = document.getElementById("tableBodySearch").getElementsByTagName("tr")[id].getElementsByTagName("td")[4].innerHTML;
+    var i = document.getElementById("tableBodyProgress").getElementsByTagName("tr")[id].getElementsByTagName("td")[4].innerHTML;
     var bearer = getCookie("bearer");
     if (bearer == '') {
       window.location = "https://onryo.entrydns.org";
